@@ -4,39 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bank_Account
+namespace BankAccounnt
 {
     class Customer
     {
         public string Name { get; set; }
         Account[] accounts;
-        public int AccCount;
+        public int cnt=0;
         public Customer(string name)
         {
             Name = name;
-            accounts = new Account[20];
+            accounts = new Account[40];
         }
-        public void AccDetails()
-        {
-            Console.WriteLine("Customer name: " + Name);
 
-            for (int i = 0; i < AccCount; i++)
-            {
-                accounts[i].ShowInfo();
-            }
-        }
         public void AddAccount(params Account[] accounts)
         {
             foreach (Account acc in accounts)
             {
-                this.accounts[AccCount++] = acc;
+                this.accounts[cnt++] = acc;
+            }
+        }
+
+        public void AccDetails()
+        {
+            Console.WriteLine("Customer name: " + Name);
+
+            for (int i = 0; i < cnt; i++)
+            {
+                accounts[i].ShowInfo();
             }
         }
 
         public Account findAccount(string accNo)
         {
             Account acc = null;
-            for (int i = 0; i < AccCount; i++)
+            for (int i = 0; i < cnt; i++)
             {
                 if (accNo.Equals(accounts[i].AccNo))
                 {

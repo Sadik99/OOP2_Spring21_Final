@@ -4,39 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bank_Account
+namespace BankAccounnt
 {
     class SuperSavings : Account
     {
-        public double openingAmount { get; set; }
-        public SuperSavings(string accName, string accNo, double balance) : base(accName, accNo, balance)
+        public double open { get; set; }
+        public SuperSavings(string accName, string accNo, double bal) : base(accName, accNo, bal)
         {
-            this.openingAmount = balance;
+            this.open = bal;
         }
-
-        public override void Transfer(Account acc, double amount)
+        public override void Transfer(Account acc, double amu)
         {
-            if (amount <= Balance - (openingAmount * 20 / 100))
+            if (amu <= Balance - (open * 20 / 100))
             {
-                Balance -= amount;
-                acc.Balance += amount;
+                acc.Balance += amu;
+                Balance -= amu;
+                Transaction tr = new Transaction(this, acc, amu, "Transfer.");
+                base.addTransaction(tr);
             }
             else
             {
-                Console.WriteLine("Not sufficient fund. Min amount " + openingAmount * 20 / 100);
+                Console.WriteLine("Not Enough fund!Min amount needed: " + open * 20 / 100);
             }
         }
-        public override void Withdraw(double amount)
+        public override void Withdraw(double amu)
         {
-            if (amount <= Balance - (openingAmount * 20 / 100))
+            if (amu <= Balance - (open * 20 / 100))
             {
-                Balance -= amount;
+                Balance -= amu;
+                Transaction tr = new Transaction(this, this, amu, "Withdraw.");
+                base.addTransaction(tr);
             }
             else
             {
-                Console.WriteLine("Not sufficient fund. Min amount " + openingAmount * 20 / 100);
+                Console.WriteLine("Not Enough fund!Min amount needed: " + open * 20 / 100);
             }
         }
-
     }
 }

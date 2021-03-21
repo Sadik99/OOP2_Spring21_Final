@@ -4,42 +4,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bank_Account
+namespace BankAccounnt
 {
     class Fixed : Account
     {
-        public int fixedYear { get; set; }
+        public int openy { get; set; }
+        public int fixedy { get; set; }
 
-        public int openingYear { get; set; }
-        public Fixed(string accName, string accNo, double balance, int openingYear, int fixedYear) : base(accName, accNo, balance)
+        public Fixed(string accName, string accNo, double bal, int openy, int fixedy) : base(accName, accNo, bal)
         {
-            this.openingYear = openingYear;
-            this.fixedYear = fixedYear;
+            this.openy = openy;
+            this.fixedy = fixedy;
         }
-        public override void Transfer(Account acc, double amount)
+
+        public override void Transfer(Account acc, double amu)
         {
             int today = DateTime.Now.Year;
-            if (today - openingYear > fixedYear)
+            if (today - openy > fixedy)
             {
-                Balance -= amount;
-                acc.Balance += amount;
+                Balance -= amu;
+                acc.Balance += amu;
+                Transaction tr = new Transaction(this, acc, amu, "Transfer.");
+                base.addTransaction(tr);
             }
             else
             {
-                Console.WriteLine("This account is not valid for transfer!");
+                Console.WriteLine("This account is not valid!");
             }
         }
-
-        public override void Withdraw(double amount)
+        public override void Withdraw(double amu)
         {
             int today = DateTime.Now.Year;
-            if (today - openingYear > fixedYear)
+            if (today - openy > fixedy)
             {
-                Balance -= amount;
+                Balance -= amu;
+                Transaction tr = new Transaction(this, this, amu, "Withdraw.");
+                base.addTransaction(tr);
             }
             else
             {
-                Console.WriteLine("This account is not valid for withdrawn!");
+                Console.WriteLine("This account is not valid!");
             }
         }
     }

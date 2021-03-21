@@ -4,37 +4,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bank_Account
+namespace BankAccounnt
 {
     abstract class Account
     {
-        public string AccName { get; set; }
-        public string AccNo { get; set; }
         public double Balance { get; set; }
+        public string AccNo { get; set; }
+        public string AccName { get; set; }
+
+        Transaction[] transactions;
+        public int sum { get; set; }
 
         public Account() { }
-        public Account(string accName, string accNo, double balance)
+        public Account(string accName, string accNo, double bal)
         {
             AccName = accName;
             AccNo = accNo;
-            Balance = balance;
+            Balance = bal;
+            transactions = new Transaction[20];
         }
-
-        public void Deposit(double amount)
-        {
-            Balance += amount;
-            Console.WriteLine("your account credited by {0}. Current balance: {1}", amount, Balance);
-        }
-
         public void ShowInfo()
         {
             Console.WriteLine("Account Name: " + AccName);
             Console.WriteLine("Account Number: " + AccNo);
             Console.WriteLine("Current Balance: " + Balance);
-            Console.WriteLine();
+        }
+        public void Deposit(double amount)
+        {
+            Balance += amount;
+            Console.WriteLine("your account credited by {0}. Current balance: {1}", amount, Balance);
+            transactions[sum++] = new Transaction(this, this, amount, "Deposit");
         }
 
-        public abstract void Withdraw(double amount);
-        public abstract void Transfer(Account acc, double amount);
+        public void addTransaction(params Transaction[] transactionArr)
+        {
+            foreach (Transaction transaction in transactionArr)
+            {
+                this.transactions[sum++] = transaction;
+            }
+        }
+
+        public void showAllTransaction()
+        {
+            Console.WriteLine("Transaction history : ({0}) ", AccName);
+
+            for (int i = 0; i < sum; i++)
+            {
+                Console.Write(i + 1 + ". ");
+                transactions[i].showTransactions();
+            }
+        }
+        public abstract void Transfer(Account acc, double amu);
+        public abstract void Withdraw(double amu);
     }
 }

@@ -4,42 +4,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bank_Account
+namespace BankAccounnt
 {
     class Overdraft : Account
     {
-        public int limit { get; set; }
+        public int lmt { get; set; }
 
         public Overdraft() { }
-        public Overdraft(string accName, string accNo, double balance, int limit) : base(accName, accNo, balance)
+        public Overdraft(string accName, string accNo, double balance, int lmt) : base(accName, accNo, balance)
         {
-            this.limit = limit;
+            this.lmt = lmt;
         }
-
-        public override void Transfer(Account acc, double amount)
+        public override void Transfer(Account acc, double amu)
         {
-            if (amount <= Balance + limit)
+            if (amu <= Balance + lmt)
             {
-                Balance -= amount;
-                acc.Balance += amount;
+                acc.Balance += amu;
+                Balance -= amu;
+                Transaction tr = new Transaction(this, acc, amu, "Transfer.");
+                base.addTransaction(tr);
             }
             else
             {
-                Console.WriteLine("Not sufficient fund!");
+                Console.WriteLine("Not enough fund!");
             }
         }
-
-        public override void Withdraw(double amount)
+        public override void Withdraw(double amu)
         {
-            if (amount <= Balance + limit)
+            if (amu <= Balance + lmt)
             {
-                Balance -= amount;
+                Balance -= amu;
+                Transaction tr = new Transaction(this, this, amu, "Withdraw");
+                base.addTransaction(tr);
             }
             else
             {
-                Console.WriteLine("Not sufficient fund!");
+                Console.WriteLine("Not enough fund!");
             }
         }
-      
     }
 }

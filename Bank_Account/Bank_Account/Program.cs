@@ -4,26 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bank_Account
+namespace BankAccounnt
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Account sadik = new Saving("sadik", "101", 6000.0f);
-            Account salman = new Current("salman", "202", 4000f);
-            Account saleh = new Fixed("saleh", "403", 3000f, 2017, 11);
+            Account a1 = new Savings("sadik", "111", 65000.0f);
+            Account a2 = new Current("radik", "112", 22000f);
+            Account a3 = new Fixed("sohid", "123", 93000f, 2019, 14);
 
-            Account ss = new SuperSavings("salmir", "004", 1000f);
-            ss.Withdraw(800);
+            a1.Deposit(10000);
+            a1.Transfer(a2, 5000);
+            a1.showAllTransaction();
+
+            a2.ShowInfo();
+            a2.Deposit(2000f);
+            a2.Transfer(a2, 4000);
+            a2.Withdraw(3000);
+            a2.showAllTransaction();
+
+            Customer customer = new Customer("Messi");
+            Account ss = new SuperSavings("shiblu", "200", 123f);
+            ss.Deposit(80);
             ss.ShowInfo();
 
-            Account overdraft = new Overdraft("kaif", "005", 1000f, 5000);
-            overdraft.Transfer(ss, 1000);
+            Account overdraft = new Overdraft("Alom", "007", 15000f, 7000);
+            overdraft.Transfer(ss, 3000);
+            overdraft.Deposit(12000);
             overdraft.ShowInfo();
-
-            Customer customer = new Customer("Fahim");
-            
+            overdraft.showAllTransaction();
         }
     }
 }

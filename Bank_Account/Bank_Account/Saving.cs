@@ -4,51 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bank_Account
+namespace BankAccounnt
 {
-    class Saving : Account
+    class Savings : Account
     {
+
         public Savings(string AccName, string AccNo, double balance) : base(AccName, AccNo, balance) { }
-
-        public override void Transfer(Account acc, double amount)
+        public override void Transfer(Account acc, double amu)
         {
-            if (amount <= Balance - 500)
+            if (amu <= Balance - 500)
             {
-                Balance -= amount;
-                acc.Balance += amount;
-                Console.WriteLine("your account transfer by {0} to the account {1}({2})", amount, acc.AccName, acc.AccNo);
+                acc.Balance += amu;
+                Balance -= amu;
+                Console.WriteLine("Your account transfer by {0} to the account {1}({2})", amu, acc.AccName, acc.AccNo);
+                Transaction tr = new Transaction(this, acc, amu, "Transfer");
+                base.addTransaction(tr);
             }
             else
             {
-                Console.WriteLine("Insufficient balance! Min balance 500!");
+                Console.WriteLine("Insufficient balance!Min balance need 500.");
             }
         }
-        public override void Withdraw(double amount)
+        public override void Withdraw(double amu)
         {
-            if (amount <= Balance - 500)
+            if (amu <= Balance - 500)
             {
-                Balance -= amount;
-                Console.WriteLine("Your account debited by {0} to self", amount);
+                Balance -= amu;
+                Console.WriteLine("Your account debited by {0} .", amu);
+                Transaction tr = new Transaction(this, this, amu, "Withdraw.");
+                base.addTransaction(tr);
             }
             else
             {
-                Console.WriteLine("Insufficient balance! Min balance 500!");
+                Console.WriteLine("Insufficient balance! Min balance need 500.");
             }
 
-        }
-
-        public override void Transfer(Account acc, double amount)
-        {
-            if (amount <= Balance - 500)
-            {
-                Balance -= amount;
-                acc.Balance += amount;
-                Console.WriteLine("your account transfer by {0} to the account {1}({2})", amount, acc.AccName, acc.AccNo);
-            }
-            else
-            {
-                Console.WriteLine("Insufficient balance! Min balance 500");
-            }
         }
     }
 }

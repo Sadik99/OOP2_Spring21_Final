@@ -4,34 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bank_Account
+namespace BankAccounnt
 {
-    class Transaction 
+    class Transaction
     {
-        private Account sender;
         private Account receiver;
-        public double Amount { get; set; }
-        public string Additional { get; set; }
+        private Account sender;
 
+        public string Additional { get; set; }
+        public double Amu { get; set; }
+        public void showTransactions()
+        {
+            Console.WriteLine(" Transaction type: {0}  ", Additional);
+            Console.WriteLine(" Amount: " + Amu);
+            if (Additional.ToLower().Equals("transfer"))
+            {
+                Console.WriteLine(" To: {0}({1})", receiver.AccName, receiver.AccNo);
+            }
+
+        }
         public Transaction() { }
 
-        public Transaction(Account sender, Account receiver, double amount, string additional)
+        public Transaction(Account sender, Account receiver, double amu, string additional)
         {
             this.sender = sender;
             this.receiver = receiver;
             Additional = additional;
-            Amount = amount;
-        }
-
-        public void showTransactions()
-        {
-            Console.WriteLine("Transaction type: " + Additional);
-            if (Additional.ToLower().Equals("transfer"))
-            {
-                Console.WriteLine("Sender: " + sender);
-                Console.WriteLine("Receiver: " + receiver);
-            }
-            Console.WriteLine("Amount: " + Amount);
+            Amu = amu;
         }
 
     }

@@ -6,37 +6,33 @@ using System.Threading.Tasks;
 
 namespace Bank_Account
 {
-    class Transaction : Account
+    class Transaction 
     {
-        public void TransferFunds(string AccName, string AccNo, double transferAmount)
+        private Account sender;
+        private Account receiver;
+        public double Amount { get; set; }
+        public string Additional { get; set; }
+
+        public Transaction() { }
+
+        public Transaction(Account sender, Account receiver, double amount, string additional)
         {
-            if (transferAmount <= 0)
-            {
-                Console.WriteLine("Transfer amount must be positive!");
-            }
-            else if (transferAmount == 0)
-            {
-                Console.WriteLine("Invalid transfer amount");
-            }
-
-            Account fromAccount = GetAccount(AccName);
-            Account toAccount = GetAccount(AccName);
-
-            if (fromAccount.balance< transferAmount)
-            {
-                Console.WriteLine("Insufficient funds!");
-            }
-
-            fromAccount.Transfer(-1 * transferAmount, AccNo);
-            toAccount.Transfer(transferAmount, AccName);
-
+            this.sender = sender;
+            this.receiver = receiver;
+            Additional = additional;
+            Amount = amount;
         }
-        public void ShowInfo()
+
+        public void showTransactions()
         {
-            Console.WriteLine("Account Name: " + AccName);
-            Console.WriteLine("Account Number: " + AccNo);
-            Console.WriteLine("Current Balance: " + Balance);
-            Console.WriteLine();
+            Console.WriteLine("Transaction type: " + Additional);
+            if (Additional.ToLower().Equals("transfer"))
+            {
+                Console.WriteLine("Sender: " + sender);
+                Console.WriteLine("Receiver: " + receiver);
+            }
+            Console.WriteLine("Amount: " + Amount);
         }
+
     }
 }

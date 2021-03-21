@@ -10,12 +10,12 @@ namespace Bank_Account
     {
         static void Main(string[] args)
         {
-            Account sadik = new Savings("sadik", "101", 6000.0f);
+            Account sadik = new Saving("sadik", "101", 6000.0f);
             Account salman = new Current("salman", "202", 4000f);
             Account saleh = new Fixed("saleh", "403", 3000f, 2017, 11);
 
-            Account ss = new SuperSavings("salmir", "004", 100f);
-            ss.Withdraw(80);
+            Account ss = new SuperSavings("salmir", "004", 1000f);
+            ss.Withdraw(800);
             ss.ShowInfo();
 
             Account overdraft = new Overdraft("kaif", "005", 1000f, 5000);
@@ -23,6 +23,7 @@ namespace Bank_Account
             overdraft.ShowInfo();
 
             Customer customer = new Customer("Fahim");
+            
         }
     }
 }

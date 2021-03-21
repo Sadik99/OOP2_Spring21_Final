@@ -28,9 +28,9 @@ namespace Bank_Account
 
         public void ShowInfo()
         {
-            Console.WriteLine("\tAccount Name: " + AccName);
-            Console.WriteLine("\tAccount Number: " + AccNo);
-            Console.WriteLine("\tCurrent Balance: " + Balance);
+            Console.WriteLine("Account Name: " + AccName);
+            Console.WriteLine("Account Number: " + AccNo);
+            Console.WriteLine("Current Balance: " + Balance);
             Console.WriteLine();
         }
 

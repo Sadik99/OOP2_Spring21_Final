@@ -1,0 +1,7 @@
+C:\Users\HP\source\repos\Bank_interface\Bank_interface\bin\Debug\Bank_interface.exe.config
+C:\Users\HP\source\repos\Bank_interface\Bank_interface\bin\Debug\Bank_interface.exe
+C:\Users\HP\source\repos\Bank_interface\Bank_interface\bin\Debug\Bank_interface.pdb
+C:\Users\HP\source\repos\Bank_interface\Bank_interface\obj\Debug\Bank_interface.csprojAssemblyReference.cache
+C:\Users\HP\source\repos\Bank_interface\Bank_interface\obj\Debug\Bank_interface.csproj.CoreCompileInputs.cache
+C:\Users\HP\source\repos\Bank_interface\Bank_interface\obj\Debug\Bank_interface.exe
+C:\Users\HP\source\repos\Bank_interface\Bank_interface\obj\Debug\Bank_interface.pdb

@@ -43,8 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mphone.cs" />
+    <Compile Include="MusicIF.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="PlayerIF.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Radio.cs" />
+    <Compile Include="RadioIF.cs" />
+    <Compile Include="Songs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
